@@ -15,6 +15,7 @@ import java.awt.Label;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
@@ -29,7 +30,7 @@ public class View extends JFrame implements MessageHandler {
     private final int BUTTON_SIZE = 30;
     private final int BOARD_SIZE = BUTTON_SIZE * numOfButtons;
     private Messenger messenger;
-    private Square[][] squares = new Square[numOfButtons][numOfButtons];
+    private Spaces[][] squares = new Spaces[numOfButtons][numOfButtons];
     private JPanel panel = new JPanel();
     private JPanel panel2 = new JPanel();
     private int lives = 3;
@@ -41,7 +42,7 @@ public class View extends JFrame implements MessageHandler {
     GridLayout layout2 = new GridLayout(numOfButtons, numOfButtons);
 
     public View(Messenger messenger) {
-        super("MineSweeper");
+        super("TheRealLandmine");
         this.messenger = messenger;
         this.setResizable(false);
         this.setLocationRelativeTo(null);
@@ -76,7 +77,7 @@ public class View extends JFrame implements MessageHandler {
         int counter = 0;
         for (int y = 0; y < numOfButtons; y++) {
             for (int x = 0; x < numOfButtons; x++) {
-                squares[x][y] = new Square(x, y, messenger);
+                squares[x][y] = new Spaces(x, y, messenger);
                 panel.add(squares[x][y].getButton());
 
             }
