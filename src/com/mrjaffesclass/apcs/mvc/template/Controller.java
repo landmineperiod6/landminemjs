@@ -1,5 +1,6 @@
 package com.mrjaffesclass.apcs.mvc.template;
 import com.mrjaffesclass.apcs.messenger.*;
+import java.awt.Color;
 
 /**
  * 
@@ -44,6 +45,9 @@ public class Controller implements MessageHandler {
     // Create the model
     Model model = new Model(mvcMessaging);  // This creates our model
     model.init();
+    
+    GameOver gameOver= new GameOver(mvcMessaging);
+    gameOver.init();
   }
 
   /**
@@ -53,20 +57,13 @@ public class Controller implements MessageHandler {
    * "this" refers to this controller object.
    */
   public void init() {
-    // This is where you would subscribe to any messages the controller
-    // would need to process
-    // A sample subscriber call would be like...
-    //mvcMessaging.subscribe("view:toggleButtonClick", this);
+    mvcMessaging.subscribe("view:toggleButtonClick", this);
+    mvcMessaging.subscribe("view:buttonClick", this); 
+    mvcMessaging.subscribe("view:changeButton", this);
   }
 
   @Override
-  public void messageHandler(String messageName, Object messagePayload) {
-    if (messagePayload != null) {
-      System.out.println("MSG: received by controller: "+messageName+" | "+messagePayload.toString());
-    } else {
-      System.out.println("MSG: received by controller: "+messageName+" | No data sent");
-    }
-    // This is where the controller would handle any messages
+  public void messageHandler(String messsageName, Object messagePayload) {
   }
 
   /**
